@@ -20,7 +20,9 @@
         <p>Jouer</p>
     </button>
 
-    <a-scene embedded arjs="sourceType: webcam;">
+    <a-scene embedded vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;"
+        arjs="sourceType: webcam; debugUIEnabled: false;">
+
 
         <!--
         <a-marker preset="kanji">
@@ -36,7 +38,7 @@
         </a-marker>
         -->
         <!-- Caméra avec GPS pour la réalité augmentée basée sur la localisation -->
-        <a-entity gps-camera="simulateAltitude: false"></a-entity>
+        <a-entity gps-camera="simulateAltitude: false; positionMinAccuracy: 100;"></a-entity>
 
         <!-- Conteneur d'anneaux (vide par défaut, rempli au clic) -->
         <a-entity id="ring-container"></a-entity>
