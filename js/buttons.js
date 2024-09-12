@@ -11,7 +11,7 @@
 
 
 // Fonction pour afficher les anneaux
-document.getElementById('starts').addEventListener('click', function () {
+document.getElementById('start').addEventListener('click', function () {
     const ringContainer = document.getElementById('ring-container');
 
     // Vérifier si le navigateur fournit bien les données GPS
