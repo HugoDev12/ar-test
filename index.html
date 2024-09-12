@@ -4,30 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Planet</title>
-  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+  <title>Test AR.js</title>
 </head>
 
 <body>
-  <a-scene embedded arjs="sourceType: webcam;">
-    <!-- Marqueur pour Mars -->
-    <a-marker preset="kanji">
-      <a-sphere src="/asset/mars.jpg" position="0 1 0" radius="1" segments-height="53">
-      </a-sphere>
-    </a-marker>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p>Documentation : <a href="https://ar-js-org.github.io/AR.js-Docs/">ICI</a></p>
 
-    <!-- Marqueur pour la Terre -->
-    <a-marker preset="hiro">
-      <a-sphere
-        src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
-        position="0 1 0" radius="1" segments-height="53">
-      </a-sphere>
-    </a-marker>
+  <br>
+  <button><a href="test1.html">test 1 Image tracking</a></button>
+  <button><a href="test2.html">test 2 Location Based</a></button>
+  <button><a href="test3.html">test 3 Maker</a></button>
+  <button><a href="test4.html">tests Avancés</a></button>
+  <button><a href="test-projet.html">tests projet</a></button>
 
-    <!-- Caméra unique pour la scène -->
-    <a-entity camera></a-entity>
-  </a-scene>
+
+
 </body>
 
 </html>

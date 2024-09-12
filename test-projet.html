@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Planet</title>
+    <link rel="stylesheet" href="css/buttons.css">
+    <!-- A-Frame et AR.js pour l'AR basée sur la géolocalisation -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://rawcdn.githack.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
+    <script
+        src="https://rawcdn.githack.com/nicolocarpignoli/location-based-ar/master/build/aframe-location-based.min.js"></script>
+    <script src="js/buttons.js"></script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+    <button id="start" class="button-play">
+        <p>Jouer</p>
+    </button>
+
+    <a-scene embedded arjs="sourceType: webcam;">
+
+        <!--
+        <a-marker preset="kanji">
+            <a-sphere src="/asset/mars.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <a-marker preset="hiro">
+            <a-sphere
+                src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
+                position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+        -->
+        <!-- Caméra avec GPS pour la réalité augmentée basée sur la localisation -->
+        <a-entity gps-camera="simulateAltitude: false"></a-entity>
+
+        <!-- Conteneur d'anneaux (vide par défaut, rempli au clic) -->
+        <a-entity id="ring-container"></a-entity>
+
+        <!-- Caméra unique pour la scène -->
+        <!--<a-entity camera></a-entity>-->
+    </a-scene>
+</body>
+
+</html>
