@@ -18,35 +18,15 @@
             <p>Voir</p>
         </button>
 
+        <button id="show-solution" class="button-play">
+            <p>Solution</p>
+        </button>
+
         <!-- Anneaux orbitaux -->
         <a-entity id="ring-container"></a-entity>
 
-        <!-- Affichage du Soleil sans marqueur -->
-        <a-entity id="sun-entity">
-            <a-sphere src="asset/soleil.jpg" position="0 0 -5" radius="0.5" segments-height="53"></a-sphere>
-        </a-entity>
-
-        <!-- Affichage de Mercure sans marqueur -->
-        <a-entity id="mercure-entity">
-            <a-sphere src="asset/mercure.jpg" position="0.3 0.55 -4.5" radius="0.07" segments-height="53"></a-sphere>
-        </a-entity>
-
-        <!-- Affichage de Venus sans marqueur -->
-        <a-entity id="venus-entity">
-            <a-sphere src="asset/venus.jpg" position="0.5 0.3 -3.4" radius="0.07" segments-height="53"></a-sphere>
-        </a-entity>
-
-        <!-- Affichage de la Terre sans marqueur -->
-        <a-entity id="earth-entity">
-            <a-sphere
-                src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
-                position="0.59 0.1 -3" radius="0.07" segments-height="53"></a-sphere>
-        </a-entity>
-
-        <!-- Affichage de Neptune sans marqueur -->
-        <a-entity id="neptune-entity">
-            <a-sphere src="asset/neptune.jpg" position="0 1 -3.2" radius="0.07" segments-height="53"></a-sphere>
-        </a-entity>
+        <!-- Solution planètes -->
+        <a-entity id="planets-container"></a-entity>
 
         <!-- ! NEPTUNE -->
         <a-marker id="animated-neptune" type="pattern" preset="custom" url="asset/marker/neptune.patt"
@@ -121,7 +101,8 @@
 
 <script>
     // Fonction pour afficher les anneaux quand le bouton est cliqué
-    document.getElementById('show-rings').addEventListener('click', function () {
+    var showRings = document.getElementById('show-rings');
+    showRings.addEventListener('click', function () {
         const ringContainer = document.getElementById('ring-container');
 
         // Effacer les anneaux précédents (si besoin)
@@ -138,11 +119,62 @@
     <a-torus position="0 0 -7" radius="2.2" radius-tubular="0.001" color="#FFFFFF" rotation="0 0 0"></a-torus>
     <a-torus position="0 0 -7" radius="2.4" radius-tubular="0.001" color="#FFFFFF" rotation="0 0 0"></a-torus>
     `;
+    });
 
-        // Optionnel: Forcer le rendu après ajout
-        ringContainer.addEventListener('loaded', function () {
-            console.log("Anneaux ajoutés !");
-        });
+    // Fonction pour afficher/masquer les planètes quand le bouton est cliqué
+    var planetsVisible = false;
+
+    // Référence aux éléments
+    var showPlanets = document.getElementById('show-solution');
+    var planetsContainer = document.getElementById('planets-container');
+
+    // Gestionnaire d'événements pour le bouton
+    showPlanets.addEventListener('click', function () {
+        if (!planetsVisible) {
+            // Ajouter les planètes dynamiquement
+            planetsContainer.innerHTML = `
+            <a-entity id="sun-entity">
+                <a-sphere src="asset/soleil.jpg" position="0 0 -5" radius="0.5" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="mercure-entity">
+                <a-sphere src="asset/mercure.jpg" position="0.3 0.55 -4.5" radius="0.07" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="venus-entity">
+                <a-sphere src="asset/venus.jpg" position="0.5 -0.3 -3.4" radius="0.07" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="earth-entity">
+                <a-sphere src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
+                    position="0.59 0.1 -3" radius="0.07" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="mars-entity">
+                <a-sphere src="asset/mars.jpg" position="0.56 -0.1 -2.5" radius="0.04" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="jupiter-entity">
+                <a-sphere src="asset/jupiter.jpeg" position="-0.64 -0.1 -2.5" radius="0.07" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="saturne-entity">
+                <a-sphere src="asset/saturne.jpg" position="0 -1 -3.5" radius="0.08" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="uranus-entity">
+                <a-sphere src="asset/uranus.jpg" position="0 1 -3.2" radius="0.07" segments-height="53"></a-sphere>
+            </a-entity>
+            <a-entity id="neptune-entity">
+                <a-sphere src="asset/neptune.jpg" position="-0.5 0.5 -2.05" radius="0.05" segments-height="53"></a-sphere>
+            </a-entity>
+            `;
+
+            // Changer le texte du bouton
+            showPlanets.innerText = "Cacher";
+            // Mettre à jour l'état
+            planetsVisible = true;
+        } else {
+            // Effacer les planètes
+            planetsContainer.innerHTML = '';
+            // Changer le texte du bouton
+            showPlanets.innerText = "Solution";
+            // Mettre à jour l'état
+            planetsVisible = false;
+        }
     });
 </script>
 

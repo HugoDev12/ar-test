@@ -1,5 +1,6 @@
 /* CSS */
-.button-play {
+.button-play,
+.hide-solution {
     position: absolute;
     bottom: 1rem;
     left: 35%;
@@ -22,4 +23,9 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+}
+
+#show-solution,
+#hide-solution {
+    left: 50%;
 }
