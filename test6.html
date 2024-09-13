@@ -4,28 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Système Solaire en AR</title>
+    <title>AR Planet</title>
     <link rel="stylesheet" href="css/buttons.css">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false;" loading-screen="enabled: false;"
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" id="scene" embedded gesture-detector>
 
-    <button id="start2" class="button-play">
-        <p>Jouer</p>
-    </button>
-    <!-- Scène AR avec caméra GPS -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <button id="show-rings" class="button-play">
+            <p>Voir</p>
+        </button>
 
         <!-- Anneaux orbitaux -->
         <a-entity id="ring-container"></a-entity>
 
-        <!-- Caméra avec AR -->
-        <a-entity camera wasd-controls="enabled: false" look-controls="enabled: false"></a-entity>
+        <!-- ! NEPTUNE -->
+        <a-marker id="animated-neptune" type="pattern" preset="custom" url="asset/marker/neptune.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="neptune">
+            <a-sphere src="/ar/asset/neptune.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
 
+
+        <!-- ! VENUS -->
+        <a-marker id="animated-venus" type="pattern" preset="custom" url="asset/marker/venus.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="venus">
+            <a-sphere src="/ar/asset/venus.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! MERCURE -->
+        <a-marker id="animated-mercure" type="pattern" preset="custom" url="asset/marker/mercure.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="saturne">
+            <a-sphere src="/ar/asset/mercure.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! JUPITER -->
+        <a-marker id="animated-saturne" type="pattern" preset="custom" url="asset/marker/jupiter.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="saturne">
+            <a-sphere src="/ar/asset/jupiter.jpeg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! SATURNE -->
+        <a-marker id="animated-saturne" type="pattern" preset="custom" url="asset/marker/saturne.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="saturne">
+            <a-sphere src="/ar/asset/saturne.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! URANUS -->
+        <a-marker id="animated-uranus" type="pattern" preset="custom" url="asset/marker/uranus.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="saturne">
+            <a-sphere src="/ar/asset/uranus.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! MARS -->
+        <a-marker id="animated-mars" type="pattern" preset="custom" url="asset/marker/mars.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="mars">
+            <a-sphere src="/ar/asset/mars.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! SUN -->
+        <a-marker id="animated-sun" type="pattern" preset="custom" url="asset/marker/sun.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="sun">
+            <a-sphere src="/ar/asset/soleil.jpg" position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- ! EARTH -->
+        <a-marker id="animated-earth" type="pattern" preset="custom" url="asset/marker/marker-earth.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="earth">
+            <a-sphere
+                src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
+                position="0 1 0" radius="1" segments-height="53">
+            </a-sphere>
+        </a-marker>
+
+        <!-- Caméra unique pour la scène -->
+        <a-entity camera></a-entity>
     </a-scene>
-    <script src="js/buttons.js"></script>
 </body>
+
+<script>
+    // Fonction pour afficher les anneaux quand le bouton est cliqué
+    document.getElementById('show-rings').addEventListener('click', function () {
+        const ringContainer = document.getElementById('ring-container');
+
+        // Effacer les anneaux précédents (si besoin)
+        ringContainer.innerHTML = '';
+
+        // Ajouter les anneaux dynamiquement
+        ringContainer.innerHTML = `
+    <a-torus position="0 0 -7" radius="1" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="1.2" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="1.4" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="1.6" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="1.8" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="2" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="2.2" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    <a-torus position="0 0 -7" radius="2.4" radius-tubular="0.01" color="#FFFFFF" rotation="0 0 0"></a-torus>
+    `;
+
+        // Optionnel: Forcer le rendu après ajout
+        ringContainer.addEventListener('loaded', function () {
+            console.log("Anneaux ajoutés !");
+        });
+    });
+</script>
 
 </html>
