@@ -2,7 +2,7 @@
 .button-play {
     position: absolute;
     bottom: 1rem;
-    left: 2rem;
+    left: 35%;
     width: 10em;
     height: 2em;
     display: flex;
